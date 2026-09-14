@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
-import { Send, Check, MapPin, Mail, Github, Linkedin } from "lucide-react";
+import { Send, Check, MapPin, Mail, Phone, Github, Linkedin, Instagram } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 // NOTE(Joyal): move these to environment variables (e.g. VITE_EMAILJS_SERVICE_ID)
@@ -13,10 +13,14 @@ const EMAILJS_SERVICE_ID = import.meta.env?.VITE_EMAILJS_SERVICE_ID || "service_
 const EMAILJS_TEMPLATE_ID = import.meta.env?.VITE_EMAILJS_TEMPLATE_ID || "template_qmte25q";
 const EMAILJS_PUBLIC_KEY = import.meta.env?.VITE_EMAILJS_PUBLIC_KEY || "A5G8Kh8t1jlkkx-Gy";
 
-// TODO(Joyal): replace with your real profile links.
+const CONTACT_EMAIL = "joyallall20@gmail.com";
+const CONTACT_PHONE = "+91 959904130";
+
+// TODO(Joyal): replace with your real LinkedIn link.
 const SOCIAL_LINKS = {
-  github: "https://github.com/your-username",
+  github: "https://github.com/joyallall20",
   linkedin: "https://linkedin.com/in/your-username",
+  instagram: "https://instagram.com/joyallall",
 };
 
 const customFontStyle = { fontFamily: "Poppins, sans-serif", fontWeight: 800 };
@@ -122,7 +126,7 @@ const Connect = () => {
           to_name: "Joyal Lall",
           from_email: data.user_email,
           phone_number: data.phone_number || "Not provided",
-          to_email: "joyallall98@gmail.com",
+          to_email: CONTACT_EMAIL,
           message: data.message,
         },
         EMAILJS_PUBLIC_KEY
@@ -142,7 +146,7 @@ const Connect = () => {
 
       <div className="max-w-6xl mx-auto">
         <p style={monoStyle} className="text-amber-50/40 text-sm mb-3">
-          // contact
+          <h2 className="text-orange-500">Contect</h2>
         </p>
         <h2
           style={customFontStyle}
@@ -165,10 +169,19 @@ const Connect = () => {
               <div className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-orange-300 flex-shrink-0" />
                 <a
-                  href="mailto:joyallall98@gmail.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="text-amber-50/90 hover:text-amber-50 underline decoration-orange-300/50 underline-offset-4"
                 >
-                  joyallall98@gmail.com
+                  {CONTACT_EMAIL}
+                </a>
+              </div>
+              <div className="flex items-center gap-4">
+                <Phone className="w-5 h-5 text-orange-300 flex-shrink-0" />
+                <a
+                  href={`tel:${CONTACT_PHONE.replace(/\s+/g, "")}`}
+                  className="text-amber-50/90 hover:text-amber-50 underline decoration-orange-300/50 underline-offset-4"
+                >
+                  {CONTACT_PHONE}
                 </a>
               </div>
             </div>
@@ -184,6 +197,17 @@ const Connect = () => {
                 className="w-11 h-11 flex items-center justify-center rounded-full border border-amber-50/20 text-amber-50 hover:bg-amber-50 hover:text-black transition-colors"
               >
                 <Github size={20} />
+              </motion.a>
+              <motion.a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                whileHover={{ y: -3, rotate: -6 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                className="w-11 h-11 flex items-center justify-center rounded-full border border-amber-50/20 text-amber-50 hover:bg-amber-50 hover:text-black transition-colors"
+              >
+                <Instagram size={20} />
               </motion.a>
               <motion.a
                 href={SOCIAL_LINKS.linkedin}
